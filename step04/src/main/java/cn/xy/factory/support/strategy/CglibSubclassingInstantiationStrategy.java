@@ -15,7 +15,6 @@ public class CglibSubclassingInstantiationStrategy implements InstantiationStrat
     @Override
     public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
         Enhancer enhancer = new Enhancer();
-        // TODO: 为啥重写hashcode  https://blog.csdn.net/zxycode007/article/details/6603716
         enhancer.setSuperclass(beanDefinition.getBeanClass());
         enhancer.setCallback(new NoOp() {
             @Override
