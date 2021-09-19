@@ -23,7 +23,7 @@ public class BeanTest {
         beanFactory.registerBeanDefinition("userService", beanDefinition);
 
         // 4.获取bean
-        UserService userService = (UserService) beanFactory.getBean("userService", "小傅哥");
+        UserService userService = (UserService) beanFactory.getBean("userService", "XY");
         userService.queryUserInfo();
     }
 
@@ -37,7 +37,7 @@ public class BeanTest {
                 return super.hashCode();
             }
         });
-        Object obj = enhancer.create(new Class[]{String.class}, new Object[]{"小傅哥"});
+        Object obj = enhancer.create(new Class[]{String.class}, new Object[]{"XY"});
         System.out.println(obj);
     }
 
