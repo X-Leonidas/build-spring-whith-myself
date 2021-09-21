@@ -1,7 +1,7 @@
 package cn.xy.springframework.beans.factory.config;
 
 
-import cn.xy.springframework.beans.factory.PropertyValues;
+import cn.xy.springframework.beans.PropertyValues;
 
 /**
  * @author XiangYu

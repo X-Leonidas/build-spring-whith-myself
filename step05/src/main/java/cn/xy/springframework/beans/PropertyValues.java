@@ -1,4 +1,4 @@
-package cn.xy.springframework.beans.factory;
+package cn.xy.springframework.beans;
 
 import java.util.ArrayList;
 import java.util.HashMap;
