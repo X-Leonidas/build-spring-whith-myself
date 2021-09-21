@@ -1,10 +1,10 @@
 import bean.UserDao;
 import bean.UserService;
-import cn.xy.factory.PropertyValue;
-import cn.xy.factory.PropertyValues;
-import cn.xy.factory.config.BeanDefinition;
-import cn.xy.factory.config.BeanReference;
-import cn.xy.factory.support.DefaultListableBeanFactory;
+import cn.xy.springframework.beans.factory.PropertyValue;
+import cn.xy.springframework.beans.factory.PropertyValues;
+import cn.xy.springframework.beans.factory.config.BeanDefinition;
+import cn.xy.springframework.beans.factory.config.BeanReference;
+import cn.xy.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
 
 /**

@@ -1,6 +1,6 @@
 import bean.UserService;
-import cn.xy.factory.config.BeanDefinition;
-import cn.xy.factory.support.DefaultListableBeanFactory;
+import cn.xy.springframework.beans.factory.config.BeanDefinition;
+import cn.xy.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
 
 /**
