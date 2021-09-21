@@ -1,6 +1,6 @@
 package cn.xy.springframework.beans.factory.support;
 
-import cn.xy.springframework.beans.factory.BeansException;
+import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.factory.BeanFactory;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 
@@ -13,6 +13,7 @@ import cn.xy.springframework.beans.factory.config.BeanDefinition;
  * @create2021-09-08-23:43
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
+
     @Override
     public Object getBean(String name) throws BeansException {
         return doGetBean(name, null);
@@ -30,7 +31,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return (T) getBean(name);
     }
 
-    private <T> T doGetBean(final String name, final Object[] args) {
+    private   <T> T doGetBean(final String name, final Object[] args) {
         Object bean = getSingleton(name);
         if (bean != null) {
             return (T) bean;

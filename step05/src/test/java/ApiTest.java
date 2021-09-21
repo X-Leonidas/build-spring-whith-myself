@@ -6,7 +6,7 @@ import cn.xy.springframework.beans.PropertyValues;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanReference;
 import cn.xy.springframework.beans.factory.support.DefaultListableBeanFactory;
-import cn.xy.springframework.beans.factory.support.XmlBeanDefinitionReader;
+import cn.xy.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import cn.xy.springframework.core.io.DefaultResourceLoader;
 import cn.xy.springframework.core.io.Resource;
 import org.junit.Before;
@@ -69,7 +69,7 @@ public class ApiTest {
 
     @Test
     public void test_url() throws IOException {
-        Resource resource = resourceLoader.getResource("https://github.com/fuzhengwei/small-spring/important.properties");
+        Resource resource = resourceLoader.getResource("https://github.com/X-Leonidas/build-spring-whith-myself/blob/main/step05/src/main/resources/important.properties");
         InputStream inputStream = resource.getInputStream();
         String content = IoUtil.readUtf8(inputStream);
         System.out.println(content);

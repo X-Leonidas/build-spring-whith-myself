@@ -1,4 +1,4 @@
-package cn.xy.springframework.beans.factory;
+package cn.xy.springframework.beans;
 
 /**
  * @author XiangYu

@@ -8,7 +8,13 @@ import cn.xy.springframework.core.io.ResourceLoader;
  * @create2021-09-21-21:06
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
+    /**
+     * bean定义注册
+     */
     private BeanDefinitionRegistry registry;
+    /**
+     * 资源加载器
+     */
     private ResourceLoader resourceLoader;
 
     protected AbstractBeanDefinitionReader(BeanDefinitionRegistry registry) {

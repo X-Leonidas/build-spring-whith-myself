@@ -1,6 +1,6 @@
 package cn.xy.springframework.beans.factory.support.strategy;
 
-import cn.xy.springframework.beans.factory.BeansException;
+import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.NoOp;

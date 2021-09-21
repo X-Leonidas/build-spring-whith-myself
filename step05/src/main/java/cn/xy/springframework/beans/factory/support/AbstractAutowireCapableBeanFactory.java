@@ -1,7 +1,7 @@
 package cn.xy.springframework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.xy.springframework.beans.factory.BeansException;
+import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.PropertyValues;
 import cn.xy.springframework.beans.PropertyValue;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
@@ -36,11 +36,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
-        PropertyValues propertyValues = beanDefinition.getPropertyValues();
         try {
+            PropertyValues propertyValues = beanDefinition.getPropertyValues();
             for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+
                 String name = propertyValue.getName();
                 Object value = propertyValue.getValue();
+
                 if (value instanceof BeanReference) {
                     BeanReference beanReference = (BeanReference) value;
                     value = getBean(beanReference.getBeanName());

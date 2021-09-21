@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * 单例bean加载器
+ *
  * @author XiangYu
  * @create2021-09-08-23:26
  */

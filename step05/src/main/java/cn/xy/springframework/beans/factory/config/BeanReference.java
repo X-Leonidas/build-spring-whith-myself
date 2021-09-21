@@ -1,6 +1,8 @@
 package cn.xy.springframework.beans.factory.config;
 
 /**
+ * Bean 的引用
+ *
  * @author XiangYu
  * @create2021-09-19-22:28
  */

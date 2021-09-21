@@ -1,5 +1,7 @@
 package cn.xy.springframework.beans.factory;
 
+import cn.xy.springframework.beans.BeansException;
+
 import java.util.Map;
 
 /**

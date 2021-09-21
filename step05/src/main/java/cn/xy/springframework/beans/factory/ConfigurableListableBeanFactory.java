@@ -1,5 +1,6 @@
 package cn.xy.springframework.beans.factory;
 
+import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.ConfigurableBeanFactory;

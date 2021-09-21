@@ -1,11 +1,13 @@
-package cn.xy.springframework.beans.factory.support;
+package cn.xy.springframework.beans.factory.xml;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.XmlUtil;
-import cn.xy.springframework.beans.factory.BeansException;
+import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.PropertyValue;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanReference;
+import cn.xy.springframework.beans.factory.support.AbstractBeanDefinitionReader;
+import cn.xy.springframework.beans.factory.support.BeanDefinitionRegistry;
 import cn.xy.springframework.core.io.Resource;
 import cn.xy.springframework.core.io.ResourceLoader;
 import org.w3c.dom.Document;
@@ -32,11 +34,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
     @Override
     public void loadBeanDefinitions(Resource resource) {
-        try{
-            try(InputStream inputStream = resource.getInputStream()){
+        try {
+            try (InputStream inputStream = resource.getInputStream()) {
                 doLoadBeanDefinitions(inputStream);
             }
-        }catch (IOException | ClassNotFoundException e){
+        } catch (IOException | ClassNotFoundException e) {
             throw new BeansException("IOException parsing XML document from " + resource, e);
         }
 
@@ -87,17 +89,19 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
             // 定义Bean
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
-            // 读取属性并填充
+            // 拿到bean下的所有属性并填充
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                 if (!(bean.getChildNodes().item(j) instanceof Element)) {
                     continue;
                 }
+                // 不是属性标签，直接跳过
                 if (!"property".equals(bean.getChildNodes().item(j).getNodeName())) {
                     continue;
                 }
                 // 解析标签：property
                 Element property = (Element) bean.getChildNodes().item(j);
                 String attrName = property.getAttribute("name");
+                // 拿到值或者引用
                 String attrValue = property.getAttribute("value");
                 String attrRef = property.getAttribute("ref");
                 // 获取属性值：引入对象、值对象
@@ -106,6 +110,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 PropertyValue propertyValue = new PropertyValue(attrName, value);
                 beanDefinition.getPropertyValues().addPropertyValue(propertyValue);
             }
+            // 不允许创建相同的bean
             if (getRegistry().containsBeanDefinition(beanName)) {
                 throw new BeansException("Duplicate beanName[" + beanName + "] is not allowed");
             }

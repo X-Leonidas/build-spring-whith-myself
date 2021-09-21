@@ -15,9 +15,9 @@ import java.io.InputStream;
 @Getter
 @Setter
 public class FileSystemResource implements Resource {
-
-    private String path;
-    private File file;
+    // todo: 这里为什么要用final
+    private final String path;
+    private final File file;
 
 
     public FileSystemResource(String path) {

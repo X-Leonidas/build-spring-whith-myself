@@ -17,6 +17,7 @@ public class DefaultResourceLoader implements ResourceLoader {
         if (location.startsWith(ResourceLoader.CLASSPATH_URL_PREFIX)) {
             return new ClassPathResource(location.substring(ResourceLoader.CLASSPATH_URL_PREFIX.length()));
         }
+
         try {
             URL url = new URL(location);
             return new UrlResource(url);

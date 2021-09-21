@@ -1,5 +1,7 @@
 package cn.xy.springframework.beans.factory;
 
+import cn.xy.springframework.beans.BeansException;
+
 /**
  * @author XiangYu
  * @create2021-09-08-23:22

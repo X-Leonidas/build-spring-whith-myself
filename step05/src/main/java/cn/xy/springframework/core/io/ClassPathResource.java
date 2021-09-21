@@ -1,5 +1,6 @@
 package cn.xy.springframework.core.io;
 
+import cn.hutool.core.lang.Assert;
 import cn.xy.springframework.util.ClassUtils;
 
 import java.io.FileNotFoundException;
@@ -11,7 +12,8 @@ import java.util.Objects;
  * @create2021-09-21-19:20
  */
 public class ClassPathResource implements Resource {
-    private String path;
+    // TODO：这里为什么要用final
+    private final String path;
     private ClassLoader classLoader;
 
 
@@ -20,6 +22,7 @@ public class ClassPathResource implements Resource {
     }
 
     public ClassPathResource(String path, ClassLoader classLoader) {
+        Assert.notNull(path, "Path must not be null");
         this.path = path;
         this.classLoader = classLoader != null ? classLoader : ClassUtils.getDefaultClassLoader();
 
