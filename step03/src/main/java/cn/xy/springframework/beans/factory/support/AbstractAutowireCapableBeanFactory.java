@@ -4,6 +4,7 @@ import cn.xy.BeansException;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.support.strategy.CglibSubclassingInstantiationStrategy;
 import cn.xy.springframework.beans.factory.support.strategy.InstantiationStrategy;
+import cn.xy.springframework.beans.factory.support.strategy.SimpleInstantiationStrategy;
 
 import java.lang.reflect.Constructor;
 
@@ -16,6 +17,7 @@ import java.lang.reflect.Constructor;
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
 
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
+    private InstantiationStrategy simple = new SimpleInstantiationStrategy();
 
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {

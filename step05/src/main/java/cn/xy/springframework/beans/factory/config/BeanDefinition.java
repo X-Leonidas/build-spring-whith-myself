@@ -10,6 +10,8 @@ import cn.xy.springframework.beans.PropertyValues;
 public class BeanDefinition {
     private Class beanClass;
 
+    private PropertyValues propertyValues;
+
     public BeanDefinition(Class beanClass) {
         this.beanClass = beanClass;
         this.propertyValues = new PropertyValues();
@@ -20,7 +22,7 @@ public class BeanDefinition {
         this.propertyValues = propertyValues != null ? propertyValues : new PropertyValues();
     }
 
-    private PropertyValues propertyValues;
+
 
     public void setPropertyValues(PropertyValues propertyValues) {
         this.propertyValues = propertyValues;

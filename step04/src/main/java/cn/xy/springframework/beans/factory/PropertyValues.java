@@ -11,8 +11,6 @@ import java.util.Map;
  */
 public class PropertyValues {
     private List<PropertyValue> propertyValueList = new ArrayList<>();
-
-
     /**
      * 缓存
      */
