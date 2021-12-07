@@ -1,9 +1,9 @@
 package cn.xy.springframework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.xy.BeansException;
-import cn.xy.springframework.beans.factory.PropertyValue;
-import cn.xy.springframework.beans.factory.PropertyValues;
+import cn.xy.springframework.beans.BeansException;
+import cn.xy.springframework.beans.PropertyValue;
+import cn.xy.springframework.beans.PropertyValues;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanReference;
 import cn.xy.springframework.beans.factory.support.strategy.CglibSubclassingInstantiationStrategy;
@@ -36,13 +36,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
-        // 从beanDefinition 中拿到所有的属性值
-        PropertyValues propertyValues = beanDefinition.getPropertyValues();
         try {
+            PropertyValues propertyValues = beanDefinition.getPropertyValues();
             for (PropertyValue propertyValue : propertyValues.getPropertyValues()) {
+
                 String name = propertyValue.getName();
                 Object value = propertyValue.getValue();
-                // 如果是引用类型则继续get
+
                 if (value instanceof BeanReference) {
                     BeanReference beanReference = (BeanReference) value;
                     value = getBean(beanReference.getBeanName());

@@ -1,0 +1,8 @@
+cn.xy.springframework.beans
+cn.xy.springframework.beans.factory
+cn.xy.springframework.beans.factory.config
+cn.xy.springframework.beans.factory.support
+cn.xy.springframework.beans.factory.support.strategy
+cn.xy.springframework.beans.factory.xml
+cn.xy.springframework.core.io
+cn.xy.springframework.util
