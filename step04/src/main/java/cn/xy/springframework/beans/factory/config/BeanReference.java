@@ -7,7 +7,6 @@ package cn.xy.springframework.beans.factory.config;
 public class BeanReference {
     private String beanName;
 
-
     public BeanReference() {
     }
 

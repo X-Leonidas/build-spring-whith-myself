@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * @author XiangYu
- * @create2021-09-19-22:34
+ * @date 2021-09-19-22:34
  */
 public class PropertyValues {
     private List<PropertyValue> propertyValueList = new ArrayList<>();

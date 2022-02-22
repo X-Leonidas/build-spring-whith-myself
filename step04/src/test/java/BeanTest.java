@@ -14,6 +14,7 @@ import org.junit.Test;
 public class BeanTest {
     @Test
     public void ApiTest() {
+        // 1. 初始化bean工厂
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         // 2. UserDao 注册
         beanFactory.registerBeanDefinition("userDao", new BeanDefinition(UserDao.class));

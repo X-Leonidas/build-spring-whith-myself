@@ -7,8 +7,9 @@ package cn.xy.springframework.beans.factory.config;
 public interface SingletonBeanRegistry {
     /**
      * 获取bean定义对象
-     * @param beanName
-     * @return
+     *
+     * @param beanName beanName
+     * @return bean Object
      */
     Object getSingleton(String beanName);
 }

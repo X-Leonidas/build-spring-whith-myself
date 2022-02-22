@@ -10,8 +10,8 @@ public interface BeanDefinitionRegistry {
     /**
      * 向注册表中注册 BeanDefinition
      *
-     * @param beanName
-     * @param beanDefinition
+     * @param beanName beanName
+     * @param beanDefinition  beanDefinition
      */
     void registerBeanDefinition(String beanName, BeanDefinition beanDefinition);
 }

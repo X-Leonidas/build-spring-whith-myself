@@ -5,7 +5,7 @@ import cn.xy.springframework.beans.PropertyValues;
 
 /**
  * @author XiangYu
- * @create2021-09-08-23:21
+ * @date  2021-09-08-23:21
  */
 public class BeanDefinition {
     private Class beanClass;

@@ -9,12 +9,12 @@ import java.util.Objects;
 
 /**
  * @author XiangYu
- * @create2021-09-15-22:12
+ * @date 2021-09-15-22:12
  */
 public class SimpleInstantiationStrategy implements InstantiationStrategy {
     @Override
-    public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
-        Class beanClass = beanDefinition.getBeanClass();
+    public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor<?> ctor, Object[] args) throws BeansException {
+        Class<?> beanClass = beanDefinition.getBeanClass();
         try {
             if (Objects.nonNull(ctor)) {
                 return beanClass.getDeclaredConstructor(ctor.getParameterTypes()).newInstance(args);

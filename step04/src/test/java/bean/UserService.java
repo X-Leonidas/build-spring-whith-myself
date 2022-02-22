@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Objects;
+
 /**
  * @author XiangYu
- * @create2021-09-08-22:52
+ * @date 2021-09-08-22:52
  */
 
 @Data
@@ -15,8 +17,16 @@ import lombok.NoArgsConstructor;
 public class UserService {
     private String uId;
     private UserDao userDao;
+
     public void queryUserInfo() {
-        System.out.println("查询用户信息：" + userDao.queryUserName(uId));
+        String userName = userDao.queryUserName(uId);
+        if (Objects.nonNull(userName) && userName.length() > 0) {
+            System.out.println("查询用户信息：" + userDao.queryUserName(uId));
+        } else {
+            System.out.println("query user name failed.");
+        }
+
+
     }
 
 }

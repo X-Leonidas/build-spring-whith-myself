@@ -2,7 +2,7 @@ package cn.xy;
 
 /**
  * @author XiangYu
- * @create2021-09-08-22:48
+ * @create 2021-09-08-22:48
  */
 public class BeanDefinition {
     private Object bean;

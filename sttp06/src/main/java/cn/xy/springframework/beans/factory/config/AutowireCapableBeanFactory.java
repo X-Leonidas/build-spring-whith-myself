@@ -1,8 +1,8 @@
 package cn.xy.springframework.beans.factory.config;
-
 import cn.xy.springframework.beans.factory.BeanFactory;
 
 /**
+ * @author  xiangyu
  * Extension of the {@link BeanFactory}
  * interface to be implemented by bean factories that are capable of
  * autowiring, provided that they want to expose this functionality for

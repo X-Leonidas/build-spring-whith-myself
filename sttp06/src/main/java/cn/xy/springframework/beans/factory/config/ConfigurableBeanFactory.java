@@ -13,7 +13,7 @@ import cn.xy.springframework.beans.factory.HierarchicalBeanFactory;
  *  可以获取BeanPostProcessor，BeanClassLoader等的一个配置化接口
  * @author xinagyu
  */
-public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry  {
+public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry {
     String SCOPE_SINGLETON = "singleton";
 
     String SCOPE_PROTOTYPE = "prototype";
