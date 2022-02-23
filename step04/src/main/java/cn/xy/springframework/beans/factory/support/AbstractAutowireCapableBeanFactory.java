@@ -25,6 +25,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
         Object bean;
         try {
+            // 创建bean
             bean = createBeanInstance(beanDefinition, beanName, args);
             // 填充bean 属性
             applyPropertyValues(beanName, bean, beanDefinition);

@@ -1,31 +1,29 @@
 package cn.xy.springframework.beans;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * @author XiangYu
- * @create2021-09-19-22:34
+ * @author xiangyu
+ * @date 2022-02-22 22:21
  */
 public class PropertyValues {
     private final List<PropertyValue> propertyValueList = new ArrayList<>();
-    /**
-     * 缓存
-     */
-    private Map<String, PropertyValue> cache = new HashMap<>();
 
-    public void addPropertyValue(PropertyValue value) {
-        propertyValueList.add(value);
-        cache.put(value.getName(), value);
+    public void addPropertyValue(PropertyValue pv) {
+        this.propertyValueList.add(pv);
     }
 
     public PropertyValue[] getPropertyValues() {
         return this.propertyValueList.toArray(new PropertyValue[0]);
     }
 
-    public PropertyValue getPropertyValue(String beanName) {
-        return cache.getOrDefault(beanName, null);
+    public PropertyValue getPropertyValue(String propertyName) {
+        for (PropertyValue pv : this.propertyValueList) {
+            if (pv.getName().equals(propertyName)) {
+                return pv;
+            }
+        }
+        return null;
     }
 }

@@ -9,11 +9,11 @@ import java.lang.reflect.Constructor;
 
 /**
  * @author XiangYu
- * @create2021-09-15-22:12
+ * @date 2021-09-15-22:12
  */
 public class CglibSubclassingInstantiationStrategy implements InstantiationStrategy {
     @Override
-    public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException {
+    public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor<?> ctor, Object[] args) throws BeansException {
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(beanDefinition.getBeanClass());
         enhancer.setCallback(new NoOp() {

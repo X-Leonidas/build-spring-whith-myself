@@ -6,10 +6,9 @@ import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import java.lang.reflect.Constructor;
 
 /**
- * @author XiangYu
- * @create2021-09-15-22:11
+ * @author xiangyu
+ * @date 2022-02-22 22:33
  */
 public interface InstantiationStrategy {
-    Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor ctor, Object[] args) throws BeansException;
-
+    Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor<?> ctor, Object[] args) throws BeansException;
 }

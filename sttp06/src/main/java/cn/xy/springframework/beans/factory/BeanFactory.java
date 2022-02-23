@@ -1,24 +1,11 @@
 package cn.xy.springframework.beans.factory;
 
-import cn.xy.springframework.beans.BeansException;
-
 /**
- * @author XiangYu
- * @create2021-09-08-23:22
+ * @author xiangyu
+ * @date 2022-02-22 22:02
  */
 public interface BeanFactory {
-    /**
-     * 获取bean
-     * @param name
-     * @return
-     * @throws BeansException
-     */
-    Object getBean(String name) throws BeansException;
+    Object getBean(String beanName);
 
-
-    Object getBean(String name, Object... args) throws BeansException;
-
-
-
-    <T> T getBean(String name, Class<T> requiredType) throws BeansException;
+    Object getBean(String beanName, Object... args);
 }

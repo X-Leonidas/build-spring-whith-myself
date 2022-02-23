@@ -1,8 +1,8 @@
 package cn.xy.springframework.beans;
 
 /**
- * @author XiangYu
- * @create2021-09-08-23:22
+ * @author xiangyu
+ * @date 2022-02-22 21:41
  */
 public class BeansException extends RuntimeException {
     public BeansException(String msg) {
@@ -12,5 +12,4 @@ public class BeansException extends RuntimeException {
     public BeansException(String msg, Throwable cause) {
         super(msg, cause);
     }
-
 }

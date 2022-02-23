@@ -1,42 +1,25 @@
 package cn.xy.springframework.beans.factory.config;
 
-
 import cn.xy.springframework.beans.PropertyValues;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * @author XiangYu
- * @create2021-09-08-23:21
+ * @author xiangyu
+ * @date 2022-02-22 22:16
  */
-public class BeanDefinition {
-    private Class beanClass;
 
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class BeanDefinition {
+    private Class<?> beanClass;
     private PropertyValues propertyValues;
 
-    public BeanDefinition(Class beanClass) {
+    public BeanDefinition(Class<?> beanClass) {
         this.beanClass = beanClass;
         this.propertyValues = new PropertyValues();
-    }
-
-    public BeanDefinition(Class beanClass, PropertyValues propertyValues) {
-        this.beanClass = beanClass;
-        this.propertyValues = propertyValues != null ? propertyValues : new PropertyValues();
-    }
-
-
-
-    public void setPropertyValues(PropertyValues propertyValues) {
-        this.propertyValues = propertyValues;
-    }
-
-    public PropertyValues getPropertyValues() {
-        return propertyValues;
-    }
-
-    public Class getBeanClass() {
-        return beanClass;
-    }
-
-    public void setBeanClass(Class beanClass) {
-        this.beanClass = beanClass;
     }
 }

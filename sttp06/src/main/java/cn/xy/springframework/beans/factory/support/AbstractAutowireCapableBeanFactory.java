@@ -2,31 +2,30 @@ package cn.xy.springframework.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.xy.springframework.beans.BeansException;
-import cn.xy.springframework.beans.PropertyValue;
 import cn.xy.springframework.beans.PropertyValues;
+import cn.xy.springframework.beans.PropertyValue;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanReference;
 import cn.xy.springframework.beans.factory.support.strategy.CglibSubclassingInstantiationStrategy;
 import cn.xy.springframework.beans.factory.support.strategy.InstantiationStrategy;
 
 import java.lang.reflect.Constructor;
+import java.util.Objects;
 
 /**
- * 自动注入bean对象的能力
- *
- * @author XiangYu
- * @create2021-09-08-23:53
+ * @author xiangyu
+ * @date 2022-02-22 22:37
+ * <p>
+ *  实现了获取bean实例 填充属性的能力
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
-
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
     @Override
-    protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) throws BeansException {
+    protected Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args) {
         Object bean;
         try {
-            bean = createBeanInstance(beanDefinition, beanName, args);
-            // 填充bean 属性
+            bean = createBeanInstantiation(beanDefinition, beanName, args);
             applyPropertyValues(beanName, bean, beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
@@ -45,30 +44,34 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
                 if (value instanceof BeanReference) {
                     BeanReference beanReference = (BeanReference) value;
-                    value = getBean(beanReference.getBeanName());
+                    value = getBean(beanReference.getReferenceBeanName());
                 }
+
                 // 属性填充
                 BeanUtil.setFieldValue(bean, name, value);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             throw new BeansException("Error setting property values：" + beanName);
         }
+
     }
 
 
-    protected Object createBeanInstance(BeanDefinition beanDefinition, String beanName, Object[] args) {
-        Constructor constructorToUse = null;
+    protected Object createBeanInstantiation(BeanDefinition beanDefinition, String beanName, Object[] args) {
         Class<?> beanClass = beanDefinition.getBeanClass();
+        Constructor<?> constructor = null;
         Constructor<?>[] declaredConstructors = beanClass.getDeclaredConstructors();
-        for (Constructor ctor : declaredConstructors) {
-            if (null != args && ctor.getParameterTypes().length == args.length) {
-                constructorToUse = ctor;
+
+        for (Constructor<?> declaredConstructor : declaredConstructors) {
+            if (Objects.nonNull(args) && declaredConstructor.getParameterTypes().length == args.length) {
+                constructor = declaredConstructor;
                 break;
             }
         }
-        return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructorToUse, args);
-    }
 
+        return instantiationStrategy.instantiate(beanDefinition, beanName, constructor, args);
+    }
 
     public InstantiationStrategy getInstantiationStrategy() {
         return instantiationStrategy;

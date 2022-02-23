@@ -1,14 +1,15 @@
 package cn.xy.springframework.beans.factory.config;
 
 /**
- * @author XiangYu
- * @create2021-09-08-23:22
+ * @author xiangyu
+ * @date 2022-02-22 22:06
  */
 public interface SingletonBeanRegistry {
     /**
      * 获取bean定义对象
-     * @param beanName
-     * @return
+     *
+     * @param beanName beanName
+     * @return bean Object
      */
     Object getSingleton(String beanName);
 }

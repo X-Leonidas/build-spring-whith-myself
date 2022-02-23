@@ -2,17 +2,16 @@ package cn.xy.springframework.beans;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * @author XiangYu
- * @create2021-09-19-22:30
+ * @author xiangyu
+ * @date 2022-02-22 22:20
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class PropertyValue {
-    /**
-     * 加 final 是为了解决包访问的问题
-     */
-    private final String name;
-    private final Object value;
+    private String name;
+    private Object value;
 }

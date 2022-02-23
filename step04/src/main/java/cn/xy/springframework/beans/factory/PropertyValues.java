@@ -10,26 +10,23 @@ import java.util.Map;
  * @date 2021-09-19-22:34
  */
 public class PropertyValues {
-    private List<PropertyValue> propertyValueList = new ArrayList<>();
-    /**
-     * 缓存
-     */
-    private Map<String, PropertyValue> cache = new HashMap<>();
 
-    public void addPropertyValue(PropertyValue value) {
-        propertyValueList.add(value);
-        cache.put(value.getName(), value);
+    private final List<PropertyValue> propertyValueList = new ArrayList<>();
+
+    public void addPropertyValue(PropertyValue pv) {
+        this.propertyValueList.add(pv);
     }
 
     public PropertyValue[] getPropertyValues() {
         return this.propertyValueList.toArray(new PropertyValue[0]);
     }
 
-    public PropertyValue getPropertyValue(String beanName) {
-        return cache.getOrDefault(beanName, null);
-    }
-
-    public void setPropertyValueList(List<PropertyValue> propertyValueList) {
-        this.propertyValueList = propertyValueList;
+    public PropertyValue getPropertyValue(String propertyName) {
+        for (PropertyValue pv : this.propertyValueList) {
+            if (pv.getName().equals(propertyName)) {
+                return pv;
+            }
+        }
+        return null;
     }
 }

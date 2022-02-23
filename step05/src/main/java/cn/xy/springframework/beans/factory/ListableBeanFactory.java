@@ -13,16 +13,17 @@ import java.util.Map;
  *
  *
  *{@link BeanFactory} 接口的扩展将由可以枚举其所有 bean 实例的 bean 工厂实现，而不是按照客户端的
- * 请求通过名称一一尝试 bean 查找。 预加载所有 bean 定义的 BeanFactory 实现（例如基于 XML 的工厂）
+ * 请求通过名称一一尝试 bean name 查找。 预加载所有 bean 定义的 BeanFactory 实现（例如基于 XML 的工厂）
  * 可以实现此接口。
  * <p>
+ * @author xiangyu
  */
 public interface ListableBeanFactory extends BeanFactory {
     /**
      * 按照类型返回 Bean 实例
-     * @param type
-     * @param <T>
-     * @return
+     * @param type bean的class 类型
+     * @param <T> bean
+     * @return 返回name，bean map
      * @throws BeansException
      */
     <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException;
