@@ -14,7 +14,7 @@ public class ClassUtils {
         }
 
         if (contextClassLoader == null) {
-            contextClassLoader = ClassUtils.getDefaultClassLoader();
+            contextClassLoader = ClassUtils.class.getClassLoader();
         }
 
         return contextClassLoader;
