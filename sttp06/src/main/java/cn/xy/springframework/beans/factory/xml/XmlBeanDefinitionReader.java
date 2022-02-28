@@ -18,12 +18,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * XML 解析
- * @author XiangYu
- * @create2021-09-21-21:15
+ * @author xiangyu
+ * @date 2022-02-28 23:52
  */
 public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
-
 
     public XmlBeanDefinitionReader(BeanDefinitionRegistry registry) {
         super(registry);
@@ -33,12 +31,11 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         super(registry, resourceLoader);
     }
 
+
     @Override
     public void loadBeanDefinitions(Resource resource) {
-        try {
-            try (InputStream inputStream = resource.getInputStream()) {
-                doLoadBeanDefinitions(inputStream);
-            }
+        try (InputStream inputStream = resource.getInputStream()) {
+            doLoadBeanDefinitions(inputStream);
         } catch (IOException | ClassNotFoundException e) {
             throw new BeansException("IOException parsing XML document from " + resource, e);
         }
@@ -57,7 +54,6 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
         Resource resource = resourceLoader.getResource(location);
         loadBeanDefinitions(resource);
     }
-
 
     private void doLoadBeanDefinitions(InputStream inputStream) throws ClassNotFoundException {
         Document document = XmlUtil.readXML(inputStream);

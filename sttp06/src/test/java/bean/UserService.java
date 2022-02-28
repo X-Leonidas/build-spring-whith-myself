@@ -18,15 +18,13 @@ public class UserService {
     private String uId;
     private UserDao userDao;
 
-    public void queryUserInfo() {
+    public String queryUserInfo() {
         String userName = userDao.queryUserName(uId);
         if (Objects.nonNull(userName) && userName.length() > 0) {
-            System.out.println("查询用户信息：" + userDao.queryUserName(uId));
+           return userDao.queryUserName(uId);
         } else {
-            System.out.println("query user name failed.");
+           throw new RuntimeException("query user name failed.");
         }
-
-
     }
 
 }

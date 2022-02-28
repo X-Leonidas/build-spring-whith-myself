@@ -9,10 +9,10 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- * @author XiangYu
- * @create2021-09-21-19:33
+ * @author xiangyu
+ * @date 2022-02-28 23:00
  */
-public class UrlResource implements Resource {
+public class UrlResource implements Resource{
 
     private URL url;
 

@@ -8,10 +8,10 @@ import java.io.InputStream;
 import java.util.Objects;
 
 /**
- * @author XiangYu
- * @create2021-09-21-19:20
+ * @author xiangyu
+ * @date 2022-02-28 23:01
  */
-public class ClassPathResource implements Resource {
+public class ClassPathResource implements Resource{
     /**
      * 这里为什么要用final
      * 使用final，说明一经初始化则不允许修改，确保加载的是同一个配置对象

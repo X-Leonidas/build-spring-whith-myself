@@ -19,6 +19,7 @@ import java.util.Objects;
  *  实现了获取bean实例 填充属性的能力
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
+
     private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
     @Override
@@ -70,7 +71,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             }
         }
 
-        return instantiationStrategy.instantiate(beanDefinition, beanName, constructor, args);
+        return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructor, args);
     }
 
     public InstantiationStrategy getInstantiationStrategy() {
