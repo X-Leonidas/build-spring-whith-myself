@@ -12,7 +12,6 @@ import java.util.Map;
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     private final Map<String, Object> singletonObject = new HashMap<>();
 
-
     @Override
     public Object getSingleton(String beanName) {
         return singletonObject.get(beanName);

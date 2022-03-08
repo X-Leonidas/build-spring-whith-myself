@@ -10,8 +10,8 @@ import java.io.InputStream;
 public interface Resource {
     /**
      * 获得输入流
-     * @return
-     * @throws IOException
+     * @return 输入流
+     * @throws IOException IOException
      */
     InputStream getInputStream() throws IOException;
 }

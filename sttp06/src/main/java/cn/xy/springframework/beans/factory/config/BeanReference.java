@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 /**
  * @author xiangyu
  * @date 2022-02-22 22:36
+ *
+ * bean 引用
  */
 @Data
 @NoArgsConstructor

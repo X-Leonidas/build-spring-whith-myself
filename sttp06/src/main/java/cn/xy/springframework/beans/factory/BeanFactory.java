@@ -7,6 +7,11 @@ import cn.xy.springframework.beans.BeansException;
  * @date 2022-02-22 22:02
  */
 public interface BeanFactory {
+    /**
+     * 通过bean name 获取bean
+     * @param beanName beanName
+     * @return bean
+     */
     Object getBean(String beanName);
 
     Object getBean(String beanName, Object... args);

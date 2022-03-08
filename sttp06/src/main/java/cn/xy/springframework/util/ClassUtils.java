@@ -12,13 +12,11 @@ public class ClassUtils {
         } catch (Exception e) {
             // Cannot access thread context ClassLoader - falling back to system class loader...
         }
-
         if (classLoader == null) {
             classLoader = ClassUtils.class.getClassLoader();
 
         }
         return classLoader;
-
     }
 
 

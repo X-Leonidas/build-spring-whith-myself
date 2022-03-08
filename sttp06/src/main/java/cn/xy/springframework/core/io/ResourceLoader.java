@@ -6,5 +6,11 @@ package cn.xy.springframework.core.io;
  */
 public interface ResourceLoader {
     String CLASSPATH_URL_PREFIX = "classpath:";
+
+    /**
+     * 获取源
+     * @param location location
+     * @return resource
+     */
     Resource getResource(String location);
 }

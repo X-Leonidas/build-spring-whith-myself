@@ -14,6 +14,9 @@ import cn.xy.springframework.beans.factory.HierarchicalBeanFactory;
  * @author xinagyu
  */
 public interface ConfigurableBeanFactory extends HierarchicalBeanFactory ,SingletonBeanRegistry {
+    /**
+     * 作用域
+     */
     String SCOPE_SINGLETON = "singleton";
 
     String SCOPE_PROTOTYPE = "prototype";

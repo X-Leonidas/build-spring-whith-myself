@@ -14,7 +14,7 @@ import java.net.URLConnection;
  */
 public class UrlResource implements Resource{
 
-    private URL url;
+    private final URL url;
 
     public UrlResource(URL url) {
         Assert.notNull(url, "URL must not be null");

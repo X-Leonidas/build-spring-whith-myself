@@ -17,7 +17,7 @@ public class ClassPathResource implements Resource{
      * 使用final，说明一经初始化则不允许修改，确保加载的是同一个配置对象
      */
     private final String path;
-    private ClassLoader classLoader;
+    private final ClassLoader classLoader;
 
 
     public ClassPathResource(String path) {

@@ -11,7 +11,7 @@ import java.io.InputStream;
  */
 public class FileSystemResource implements Resource {
     private String path;
-    private File file;
+    private final File file;
 
     FileSystemResource(File file) {
         this.path = file.getPath();
@@ -27,5 +27,17 @@ public class FileSystemResource implements Resource {
     @Override
     public InputStream getInputStream() throws IOException {
         return new FileInputStream(file);
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public File getFile() {
+        return file;
     }
 }

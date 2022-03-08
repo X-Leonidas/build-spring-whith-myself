@@ -9,11 +9,13 @@ import cn.xy.springframework.core.io.ResourceLoader;
  */
 public interface BeanDefinitionReader {
     /**
+     * 获取bean definition 注册器
      * @return bean definition 注册器
      */
     BeanDefinitionRegistry getRegistry();
 
     /**
+     * 获取资源加载器
      * @return resource loader
      */
     ResourceLoader getResourceLoader();
@@ -32,6 +34,9 @@ public interface BeanDefinitionReader {
      */
     void loadBeanDefinitions(Resource... resources);
 
-
+    /**
+     * 通过 location 加载bean definition
+     * @param location
+     */
     void loadBeanDefinitions(String location);
 }

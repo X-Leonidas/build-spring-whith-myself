@@ -9,7 +9,7 @@ import cn.xy.springframework.core.io.ResourceLoader;
  */
 public abstract class AbstractBeanDefinitionReader implements BeanDefinitionReader {
     private final BeanDefinitionRegistry beanDefinitionRegistry;
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
     public AbstractBeanDefinitionReader(BeanDefinitionRegistry beanDefinitionRegistry, ResourceLoader resourceLoader) {
         this.beanDefinitionRegistry = beanDefinitionRegistry;
