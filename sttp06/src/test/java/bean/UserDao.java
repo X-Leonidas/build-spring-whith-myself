@@ -7,6 +7,9 @@ public class UserDao {
 
     private static final Map<String, String> DATA_CACHE = new HashMap<>();
 
+    /**
+     *  模拟的数据
+     */
     static {
         DATA_CACHE.put("10001", "XY");
         DATA_CACHE.put("10002", "八杯水");

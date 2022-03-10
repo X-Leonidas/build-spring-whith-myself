@@ -1,5 +1,6 @@
 package cn.xy.springframework.beans.factory.support;
 
+import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.core.io.Resource;
 import cn.xy.springframework.core.io.ResourceLoader;
 
@@ -39,4 +40,6 @@ public interface BeanDefinitionReader {
      * @param location
      */
     void loadBeanDefinitions(String location);
+
+    void loadBeanDefinitions(String... locations) throws BeansException;
 }

@@ -20,4 +20,10 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory ,Single
     String SCOPE_SINGLETON = "singleton";
 
     String SCOPE_PROTOTYPE = "prototype";
+
+    /**
+     *  TODO:为啥要定义两次
+     * @param beanPostProcessor
+     */
+    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 }

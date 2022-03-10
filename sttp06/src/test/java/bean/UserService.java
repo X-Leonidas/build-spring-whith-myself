@@ -17,15 +17,27 @@ import java.util.Objects;
 public class UserService {
     private String uId;
     private UserDao userDao;
+    private String company;
+    private String location;
 
     public String queryUserInfo() {
         String userName = userDao.queryUserName(uId);
         if (Objects.nonNull(userName) && userName.length() > 0) {
-           return userDao.queryUserName(uId);
+            System.out.println(this);
+            return userDao.queryUserName(uId);
         } else {
-           throw new RuntimeException("query user name failed.");
+            throw new RuntimeException("query user name failed.");
         }
     }
 
+
+    @Override
+    public String toString() {
+        return "UserService{" +
+                "uId='" + uId + '\'' +
+                ", company='" + company + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
 }
 
