@@ -22,8 +22,9 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory ,Single
     String SCOPE_PROTOTYPE = "prototype";
 
     /**
-     *  TODO:为啥要定义两次
-     * @param beanPostProcessor
+     *添加bean 处理器
+     *
+     * @param beanPostProcessor beanPostProcessor
      */
     void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 }

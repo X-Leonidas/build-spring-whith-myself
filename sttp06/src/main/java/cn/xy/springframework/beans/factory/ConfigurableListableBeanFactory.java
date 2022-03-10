@@ -3,7 +3,6 @@ package cn.xy.springframework.beans.factory;
 import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
-import cn.xy.springframework.beans.factory.config.BeanPostProcessor;
 import cn.xy.springframework.beans.factory.config.ConfigurableBeanFactory;
 
 
@@ -28,13 +27,6 @@ public interface ConfigurableListableBeanFactory extends
      * @throws BeansException
      */
     BeanDefinition getBeanDefinition(String beanName) throws BeansException;
-
-    /**
-     * 添加bean post processor
-     * @param beanPostProcessor beanPostProcessor
-     */
-    @Override
-    void addBeanPostProcessor(BeanPostProcessor beanPostProcessor);
 
 
     /**
