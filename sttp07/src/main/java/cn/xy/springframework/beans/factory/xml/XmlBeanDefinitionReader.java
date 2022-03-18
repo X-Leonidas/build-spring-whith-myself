@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- *
  * xml加載器
+ *
  * @author xiangyu
  * @date 2022-02-28 23:52
  */
@@ -51,7 +51,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
     }
 
     @Override
-    public void loadBeanDefinitions(String location) {
+    public void loadBeanDefinitions(String location) throws BeansException {
         ResourceLoader resourceLoader = getResourceLoader();
         Resource resource = resourceLoader.getResource(location);
         loadBeanDefinitions(resource);
@@ -83,6 +83,9 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
             String id = bean.getAttribute("id");
             String name = bean.getAttribute("name");
             String className = bean.getAttribute("class");
+            String initMethod = bean.getAttribute("init-method");
+            String destroyMethodName = bean.getAttribute("destroy-method");
+
             // 获取 Class，方便获取类中的名称
             Class<?> clazz = Class.forName(className);
             // 优先级 id > name
@@ -94,6 +97,8 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
             // 定义Bean
             BeanDefinition beanDefinition = new BeanDefinition(clazz);
+            beanDefinition.setInitMethodName(initMethod);
+            beanDefinition.setDestroyMethodName(destroyMethodName);
             // 拿到bean下的所有属性并填充
             for (int j = 0; j < bean.getChildNodes().getLength(); j++) {
                 if (!(bean.getChildNodes().item(j) instanceof Element)) {

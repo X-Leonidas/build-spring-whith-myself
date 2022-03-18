@@ -10,11 +10,21 @@ import cn.xy.springframework.beans.BeansException;
  * to the application context client methods in the
  * {@link ApplicationContext} interface.
  */
-public interface ConfrigurableAppliactionContext extends ApplicationContext {
+public interface ConfigurableApplicationContext extends ApplicationContext {
     /**
      * 刷新容器
      *
      * @throws BeansException
      */
     void refresh() throws BeansException;
+
+    /**
+     * 在jvm中增加一个关闭的狗子，当要关闭时调用
+     */
+    void registerShutdownHook();
+
+    /**
+     *  关闭的钩子中所要执行的方法
+     */
+    void close();
 }

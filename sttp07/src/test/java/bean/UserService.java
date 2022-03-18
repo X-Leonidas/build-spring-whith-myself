@@ -1,8 +1,11 @@
 package bean;
 
+import cn.xy.springframework.beans.factory.DisposableBean;
+import cn.xy.springframework.beans.factory.InitializingBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.Objects;
 
@@ -14,12 +17,21 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserService {
+@Log4j2
+public class UserService implements InitializingBean, DisposableBean {
     private String uId;
     private UserDao userDao;
     private String company;
     private String location;
+    @Override
+    public void destroy() throws Exception {
+        log.info("执行：UserService.destroy");
+    }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        log.info("执行：UserService.afterPropertiesSet");
+    }
     public String queryUserInfo() {
         String userName = userDao.queryUserName(uId);
         if (Objects.nonNull(userName) && userName.length() > 0) {

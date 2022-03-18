@@ -4,7 +4,7 @@ import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.factory.ConfigurableListableBeanFactory;
 import cn.xy.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import cn.xy.springframework.beans.factory.config.BeanPostProcessor;
-import cn.xy.springframework.context.ConfrigurableAppliactionContext;
+import cn.xy.springframework.context.ConfigurableApplicationContext;
 import cn.xy.springframework.core.io.DefaultResourceLoader;
 
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
  * @author xiangyu
  * @date 2022-03-09 22:14
  */
-public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfrigurableAppliactionContext {
+public abstract class AbstractApplicationContext extends DefaultResourceLoader implements ConfigurableApplicationContext {
     @Override
     public void refresh() throws BeansException {
         // 1. 创建 BeanFactory，并加载 BeanDefinition
@@ -70,6 +70,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
     @Override
     public String[] getBeanDefinitionNames() {
         return getBeanFactory().getBeanDefinitionNames();
+    }
+
+    @Override
+    public void registerShutdownHook() {
+        Runtime.getRuntime().addShutdownHook(new Thread(this::close));
+    }
+    @Override
+    public void close() {
+        getBeanFactory().destroySingletons();
     }
 
     protected abstract void refreshBeanFactory() throws BeansException;
