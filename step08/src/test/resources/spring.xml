@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <!--    初始化及销毁方法-->
+    <bean id="userDao" class="bean.UserDao" init-method="initDataMethod" destroy-method="destroyDataMethod"/>
+
+    <bean id="userService" class="bean.UserService">
+        <property name="uId" value="10001"/>
+        <property name="company" value="腾讯"/>
+        <property name="location" value="深圳"/>
+        <property name="userDao" ref="userDao"/>
+    </bean>
+    <!--    增强   -->
+    <bean class="common.MyBeanPostProcessor"/>
+    <bean class="common.MyBeanFactoryPostProcessor"/>
+
+</beans>
