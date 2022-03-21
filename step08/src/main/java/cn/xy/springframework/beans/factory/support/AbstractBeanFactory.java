@@ -4,6 +4,7 @@ import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanPostProcessor;
 import cn.xy.springframework.beans.factory.config.ConfigurableBeanFactory;
+import cn.xy.springframework.util.ClassUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,15 @@ import java.util.Objects;
  * @date 2022-02-22 22:10
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+    /**
+     * ClassLoader to resolve bean class names with, if necessary
+     */
+    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
-    /** BeanPostProcessors to apply in createBean */
-    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<BeanPostProcessor>();
+    /**
+     * BeanPostProcessors to apply in createBean
+     */
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
     @Override
     public Object getBean(String beanName) {
@@ -45,7 +52,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     @Override
     public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
-        // TODO: 为啥要先remove 在add
+        // 异动顺序
         this.beanPostProcessors.remove(beanPostProcessor);
         this.beanPostProcessors.add(beanPostProcessor);
     }
@@ -55,6 +62,9 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     protected abstract Object createBean(String beanName, BeanDefinition beanDefinition, Object[] args);
 
+    public ClassLoader getBeanClassLoader() {
+        return this.beanClassLoader;
+    }
 
     /**
      * Return the list of BeanPostProcessors that will get applied

@@ -1,9 +1,5 @@
 import bean.UserService;
-import cn.xy.springframework.beans.factory.support.DefaultListableBeanFactory;
-import cn.xy.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import cn.xy.springframework.context.support.ClassPathXmlApplicationContext;
-import common.MyBeanFactoryPostProcessor;
-import common.MyBeanPostProcessor;
 import org.junit.Test;
 
 /**
@@ -12,9 +8,8 @@ import org.junit.Test;
  */
 public class ApiTest {
 
-
     @Test
-    public void test_xml() {
+    public void test_xml2() {
         // 1.初始化 BeanFactory
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:spring.xml");
         applicationContext.registerShutdownHook();
@@ -23,10 +18,5 @@ public class ApiTest {
         UserService userService = applicationContext.getBean("userService", UserService.class);
         String result = userService.queryUserInfo();
         System.out.println("测试结果：" + result);
-    }
-
-    @Test
-    public void test_hook() {
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> System.out.println("close！")));
     }
 }

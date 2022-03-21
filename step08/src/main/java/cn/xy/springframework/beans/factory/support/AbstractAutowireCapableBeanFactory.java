@@ -5,8 +5,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.xy.springframework.beans.BeansException;
 import cn.xy.springframework.beans.PropertyValue;
 import cn.xy.springframework.beans.PropertyValues;
-import cn.xy.springframework.beans.factory.DisposableBean;
-import cn.xy.springframework.beans.factory.InitializingBean;
+import cn.xy.springframework.beans.factory.*;
 import cn.xy.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanPostProcessor;
@@ -49,7 +48,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return bean;
     }
 
-    private void registerDisposableBeanIfNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
+
+    protected void registerDisposableBeanIfNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
         if (bean instanceof DisposableBean || StrUtil.isNotEmpty(beanDefinition.getDestroyMethodName())) {
             registerDisposableBean(beanName, new DisposableBeanAdapter(bean, beanName, beanDefinition));
         }
@@ -130,6 +130,20 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     }
 
     private Object initializeBean(String beanName, Object bean, BeanDefinition beanDefinition) {
+        // invokeAwareMethods
+        if (bean instanceof Aware) {
+            if (bean instanceof BeanFactoryAware) {
+                ((BeanFactoryAware) bean).setBeanFactory(this);
+            }
+            if (bean instanceof BeanClassLoaderAware) {
+                ((BeanClassLoaderAware) bean).setBeanClassLoader(getBeanClassLoader());
+            }
+            if (bean instanceof BeanNameAware) {
+                ((BeanNameAware) bean).setBeanName(beanName);
+            }
+        }
+
+
         // 1. 执行 BeanPostProcessor Before 处理
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);
 
@@ -151,7 +165,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         }
 
         String initMethodName = beanDefinition.getInitMethodName();
-        if (StrUtil.isNotEmpty(initMethodName) && !(bean instanceof InitializingBean)) {
+        if (StrUtil.isNotEmpty(initMethodName)) {
             try {
                 Method initMethod = beanDefinition.getBeanClass().getMethod(initMethodName);
                 initMethod.invoke(bean);

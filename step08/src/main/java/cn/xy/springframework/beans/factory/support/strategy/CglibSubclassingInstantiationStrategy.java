@@ -15,6 +15,7 @@ public class CglibSubclassingInstantiationStrategy implements InstantiationStrat
     @Override
     public Object instantiate(BeanDefinition beanDefinition, String beanName, Constructor<?> ctor, Object[] args) throws BeansException {
         Enhancer enhancer = new Enhancer();
+        // 设置要代理的类
         enhancer.setSuperclass(beanDefinition.getBeanClass());
         enhancer.setCallback(new NoOp() {
             @Override
