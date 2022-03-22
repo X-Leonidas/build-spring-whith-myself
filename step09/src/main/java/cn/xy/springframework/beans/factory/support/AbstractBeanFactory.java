@@ -1,6 +1,7 @@
 package cn.xy.springframework.beans.factory.support;
 
 import cn.xy.springframework.beans.BeansException;
+import cn.xy.springframework.beans.factory.FactoryBean;
 import cn.xy.springframework.beans.factory.config.BeanDefinition;
 import cn.xy.springframework.beans.factory.config.BeanPostProcessor;
 import cn.xy.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -14,11 +15,12 @@ import java.util.Objects;
  * @author xiangyu
  * @date 2022-02-22 22:10
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport
+        implements ConfigurableBeanFactory {
     /**
      * ClassLoader to resolve bean class names with, if necessary
      */
-    private ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
+    private final  ClassLoader beanClassLoader = ClassUtils.getDefaultClassLoader();
 
     /**
      * BeanPostProcessors to apply in createBean
@@ -40,14 +42,16 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
         return (T) getBean(name);
     }
 
-    private <T> T doGetBean(String name, Object[] args) {
+    private <T> T doGetBean(final String name, Object[] args) {
         Object singleton = getSingleton(name);
         if (Objects.nonNull(singleton)) {
-            return (T) singleton;
+            return (T) getObjectForBeanInstance(singleton, name);
         }
         BeanDefinition beanDefinition = getBeanDefinition(name);
-        return (T) createBean(name, beanDefinition, args);
+        Object bean = createBean(name, beanDefinition, args);
+        return (T) getObjectForBeanInstance(bean, name);
     }
+
 
     @Override
     public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
@@ -68,8 +72,25 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
     /**
      * Return the list of BeanPostProcessors that will get applied
      * to beans created with this factory.
+     * 返回将应用于使用此工厂创建的 bean 的 BeanPostProcessor 列表。
      */
     public List<BeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
     }
+
+    private Object getObjectForBeanInstance(Object beanInstance, String beanName) {
+        if (!(beanInstance instanceof FactoryBean)) {
+            return beanInstance;
+        }
+
+        Object bean = getCacheedObjectForFactoryBean(beanName);
+
+        if (Objects.isNull(bean)) {
+            FactoryBean<?> factoryBean = (FactoryBean<?>) beanInstance;
+            bean = getObjectForFactoryBean(factoryBean, beanName);
+        }
+        return bean;
+    }
+
+
 }

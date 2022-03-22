@@ -43,13 +43,19 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
         // 注册实现了 DisposableBean 接口的 Bean 对象
         registerDisposableBeanIfNecessary(beanName, bean, beanDefinition);
+        // 非 singleton类型的bean 不加入缓存
+        if (beanDefinition.isSingleton()) {
+            addSingleton(beanName, bean);
+        }
 
-        addSingleton(beanName, bean);
         return bean;
     }
 
-
     protected void registerDisposableBeanIfNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
+        if (!beanDefinition.isSingleton()) {
+            return;
+        }
+
         if (bean instanceof DisposableBean || StrUtil.isNotEmpty(beanDefinition.getDestroyMethodName())) {
             registerDisposableBean(beanName, new DisposableBeanAdapter(bean, beanName, beanDefinition));
         }
@@ -90,8 +96,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 break;
             }
         }
-
-        return getInstantiationStrategy().instantiate(beanDefinition, beanName, constructor, args);
+        Object instantiate = getInstantiationStrategy().instantiate(beanDefinition, beanName, constructor, args);
+        return instantiate;
     }
 
     public InstantiationStrategy getInstantiationStrategy() {
@@ -142,7 +148,6 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 ((BeanNameAware) bean).setBeanName(beanName);
             }
         }
-
 
         // 1. 执行 BeanPostProcessor Before 处理
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);
