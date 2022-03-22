@@ -35,7 +35,6 @@ public class DisposableBeanAdapter implements DisposableBean {
 
         if (StrUtil.isNotEmpty(destroyMethodName)
                 && !(bean instanceof DisposableBean)
-                // TODO: 为啥加这个判断？
                 && "destroyDataMethod".equals(this.destroyMethodName)) {
             try {
                 Method initMethod = bean.getClass().getMethod(destroyMethodName);

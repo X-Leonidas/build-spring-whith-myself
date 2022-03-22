@@ -37,7 +37,6 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
 
     @Override
     public <T> T getBean(String name, Class<T> requiredType) throws BeansException {
-        // TODO： 通过bean类型获取bean
         return (T) getBean(name);
     }
 
