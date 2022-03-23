@@ -83,7 +83,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport
             return beanInstance;
         }
 
-        Object bean = getCacheedObjectForFactoryBean(beanName);
+        Object bean = getCachedObjectForFactoryBean(beanName);
 
         if (Objects.isNull(bean)) {
             FactoryBean<?> factoryBean = (FactoryBean<?>) beanInstance;
