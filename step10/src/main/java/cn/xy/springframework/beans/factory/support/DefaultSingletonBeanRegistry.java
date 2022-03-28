@@ -17,19 +17,24 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     /**
      * Internal marker for a null singleton object:
      * used as marker value for concurrent Maps (which don't support null values).
-     *
-     *
+     * <p>
+     * <p>
      * 空的单例对象的内部标记：用作并发 Maps 的标记值（不支持空值）。
      */
     protected static final Object NULL_OBJECT = new Object();
 
-    private final Map<String, Object> singletonObject = new HashMap<>();
+    private final Map<String, Object> singletonObjects = new HashMap<>();
 
     private final Map<String, DisposableBean> disposableBeans = new HashMap<>();
 
     @Override
     public Object getSingleton(String beanName) {
-        return singletonObject.get(beanName);
+        return singletonObjects.get(beanName);
+    }
+
+    @Override
+    public void registerSingleton(String beanName, Object singletonObject) {
+        singletonObjects.put(beanName, singletonObject);
     }
 
     public void registerDisposableBean(String beanName, DisposableBean bean) {
@@ -37,7 +42,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     }
 
     protected void addSingleton(String beanName, Object bean) {
-        singletonObject.put(beanName, bean);
+        singletonObjects.put(beanName, bean);
     }
 
     /**
