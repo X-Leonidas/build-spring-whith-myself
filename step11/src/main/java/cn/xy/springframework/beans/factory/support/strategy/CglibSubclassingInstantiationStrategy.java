@@ -17,6 +17,7 @@ public class CglibSubclassingInstantiationStrategy implements InstantiationStrat
         Enhancer enhancer = new Enhancer();
         // 设置要代理的类
         enhancer.setSuperclass(beanDefinition.getBeanClass());
+        // 设置代理方法
         enhancer.setCallback(new NoOp() {
             @Override
             public int hashCode() {
