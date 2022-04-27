@@ -11,6 +11,12 @@ import org.aopalliance.intercept.MethodInterceptor;
 @Getter
 @Setter
 public class AdvisedSupport {
+
+    /**
+     * ProxyConfig  使用啥代理的配置
+     */
+    private boolean proxyTargetClass = false;
+
     private TargetSource targetSource;
 
     private MethodInterceptor methodInterceptor;

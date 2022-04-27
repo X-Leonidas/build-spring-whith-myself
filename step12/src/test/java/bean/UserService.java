@@ -1,4 +1,4 @@
-package beans;
+package bean;
 
 import java.util.Random;
 
@@ -11,7 +11,7 @@ public class UserService implements IUserService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "xxxxxx，100001，深圳";
+        return "xxxxx，100001，深圳";
     }
 
     public String register(String userName) {
